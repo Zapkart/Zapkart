@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import CustomerDashboard from './components/CustomerDashboard';
+import CustomerDashboard from './Components/CustomerDashboard';
 import AdminDashboard from './Components/Admin/AdminDashboard';
 import SellerDashboard from './Components/Seller/SellerDashboard';
 import Razorpay from './Components/RazorpayPage.jsx';
