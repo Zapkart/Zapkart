@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 import { FiShoppingCart, FiUser, FiSearch, FiChevronRight } from 'react-icons/fi';
 import { FaStar, FaRegHeart, FaHeart } from 'react-icons/fa';
 import Footer from './Footer';
-import ZapkartHorizontalLogo from './Logo/ZapkartHorizontalLogo.png';
+import zapkarthorizontallogo from '/assets/zapkarthorizontallogo.png'; // Adjust path as needed
+
 
 
 
@@ -208,14 +209,15 @@ export default function Home() {
             className="transition-all duration-300"
           >
             <Navbar.Brand href="#" className="flex items-center">
-              <motion.img
-                src={ZapkartHorizontalLogo}
-                alt="ZapKart Logo"
-                className="w-30 h-12 object-contain"
-                whileHover={{ rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              />
-            </Navbar.Brand>
+  <motion.img
+    src={zapkarthorizontallogo}
+    alt="ZapKart Logo"
+    className="w-30 h-12 object-contain"
+    whileHover={{ rotate: 5 }}
+    transition={{ type: "spring", stiffness: 300 }}
+  />
+</Navbar.Brand>
+
           </motion.div>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
