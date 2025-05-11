@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { FiSend } from "react-icons/fi";
-import Zapkartlogo from '../Components/Logo/Zapkarthorizontallogo.png';
+import zapkarthorizontallogo from '/assets/zapkarthorizontallogo.png';
 
 const Footer = () => {
     const [email, setEmail] = useState("");
@@ -148,7 +148,7 @@ const Footer = () => {
                                 whileHover={{ rotate: 15 }}
                             >
                                <motion.img
-                                               src={Zapkartlogo}
+                                               src={zapkarthorizontallogo}
                                                alt="ZapKart Logo"
                                                className="w-30 h-12 object-contain"
                                                whileHover={{ rotate: 5 }}
