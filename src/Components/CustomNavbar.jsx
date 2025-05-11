@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Zapkartlogo from '../Components/Logo/ZapkartHorizontalLogo.png';
+import zapkarthorizontallogo from '/assets/zapkarthorizontallogo.png';
 import {
   Navbar,
   Nav,
@@ -71,7 +71,7 @@ const CustomNavbar = () => {
                     >
                       <Navbar.Brand href="#" className="flex items-center">
                         <motion.img
-                          src={Zapkartlogo}
+                          src={zapkarthorizontallogo}
                           alt="ZapKart Logo"
                           className="w-30 h-12 object-contain"
                           whileHover={{ rotate: 5 }}
