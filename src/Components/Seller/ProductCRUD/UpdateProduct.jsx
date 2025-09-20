@@ -1,6 +1,7 @@
 import { Form, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from "../../../config";
 
 export default function UpdateProduct() {
   const [updateProductData, setUpdateProductData] = useState({
@@ -22,7 +23,7 @@ export default function UpdateProduct() {
     const productUpdate = {};
     productUpdate[updateProductData.field] = updateProductData.value;
   
-    axios.put(`http://localhost:8080/api/products/${updateProductData.id}`, productUpdate, {
+    axios.put(`${BASE_URL}/api/products/${updateProductData.id}`, productUpdate, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {

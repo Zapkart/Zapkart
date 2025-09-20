@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import SalesGraph from '../Admin/SalesGraph'
 import SellerOrders from './SellerOrders';
+import BASE_URL from "../../config";
 
 
 import AddProduct from './ProductCRUD/AddProduct';
@@ -123,7 +124,7 @@ export default function SellerDashboard() {
                                     <p className="mb-0 me-2 text-white">{name}</p>
                                     {image && (
                                         <img
-                                            src={`http://localhost:8080/images/${image}`}
+                                            src={`${BASE_URL}/images/${image}`}
                                             alt="profile"
                                             style={{
                                                 width: "40px",

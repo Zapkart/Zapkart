@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from "../../../config";
 
 export default function ViewUser() {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ export default function ViewUser() {
   const fetchUsers = async () => {
     try {
       const token = JSON.parse(localStorage.getItem('token'));
-      const response = await axios.get('http://localhost:8080/api/users/', {
+      const response = await axios.get(`${BASE_URL}/api/users/`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -35,7 +36,7 @@ export default function ViewUser() {
             </div>
             <div className="w-24 h-24">
               <img
-                src={`http://localhost:8080/images/${user.profileImage}`}
+                src={`${BASE_URL}/images/${user.profileImage}`}
                 alt="Profile"
                 className="w-full h-full object-cover rounded-full"
               />

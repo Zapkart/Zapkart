@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Alert, Spinner, Card, Row, Col } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
+import BASE_URL from "../config";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();
@@ -47,7 +48,7 @@ export default function ResetPassword() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/users/reset-password?token=${token}&newPassword=${encodeURIComponent(password)}`,
+        `${BASE_URL}/api/users/reset-password?token=${token}&newPassword=${encodeURIComponent(password)}`,
         {
           method: 'POST',
         }

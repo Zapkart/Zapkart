@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
+import BASE_URL from "../../../config";
 
 export default function DeleteProduct() {
   const [pid, setPid] = useState('');
@@ -19,7 +20,7 @@ export default function DeleteProduct() {
     const token = JSON.parse(localStorage.getItem('token'));
 
     axios
-      .delete(`http://localhost:8080/api/products/${pid}`, {
+      .delete(`${BASE_URL}/api/products/${pid}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

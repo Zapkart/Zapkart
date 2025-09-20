@@ -14,6 +14,7 @@ import {
 import { motion } from "framer-motion";
 import { FiSend } from "react-icons/fi";
 import zapkarthorizontallogo from '/assets/zapkarthorizontallogo.png';
+import BASE_URL from "../config";
 
 const Footer = () => {
     const [email, setEmail] = useState("");

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Card, Button, Form } from 'react-bootstrap';
 import initiateRazorpayPayment from './Razorpay';
+import BASE_URL from "../config";
 
 function RazorpayPage() {
   const [addresses, setAddresses] = useState([]);
@@ -15,7 +16,7 @@ function RazorpayPage() {
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/address/user/${customerId}`, {
+        const response = await axios.get(`${BASE_URL}/address/user/${customerId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const formatted = response.data.map(addr => ({
@@ -61,7 +62,7 @@ function RazorpayPage() {
       }));
 
       // 3. Save orders to backend
-      const response = await axios.post('http://localhost:8080/api/orders/add-multiple', orderPayload, {
+      const response = await axios.post(`${BASE_URL}/api/orders/add-multiple`, orderPayload, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'

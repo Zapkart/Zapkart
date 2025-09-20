@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Alert, Spinner, Card, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
+import BASE_URL from "../config";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -23,7 +24,7 @@ export default function ForgotPassword() {
 
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/users/forgot-password?email=${encodeURIComponent(email)}`,
+        `${BASE_URL}/api/users/forgot-password?email=${encodeURIComponent(email)}`,
         {}
       );
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from "../../config";
 
 export default function AdminHome() {
   const [customerCount, setCustomerCount] = useState(0);
@@ -18,9 +19,9 @@ export default function AdminHome() {
           },
         };
 
-        const customerRes = await axios.get('http://localhost:8080/api/users/customercount', headers);
-        const sellerRes = await axios.get('http://localhost:8080/api/users/sellercount', headers);
-        const adminRes = await axios.get('http://localhost:8080/api/users/admincount', headers);
+        const customerRes = await axios.get(`${BASE_URL}/api/users/customercount`, headers);
+        const sellerRes = await axios.get(`${BASE_URL}/api/users/sellercount`, headers);
+        const adminRes = await axios.get(`${BASE_URL}/api/users/admincount`, headers);
 
         setCustomerCount(customerRes.data.count || customerRes.data);
         setSellerCount(sellerRes.data.count || sellerRes.data);

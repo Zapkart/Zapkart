@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from "../../config";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -11,7 +12,7 @@ export default function Orders() {
   const fetchOrders = async () => {
     try {
       const token = JSON.parse(localStorage.getItem('token'));
-      const response = await axios.get('http://localhost:8080/api/orders/all', {
+      const response = await axios.get(`${BASE_URL}/api/orders/all`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

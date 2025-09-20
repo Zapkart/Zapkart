@@ -18,6 +18,7 @@ import {
   FiChevronDown
 } from "react-icons/fi";
 import axios from "axios"; // ✅ added axios
+import BASE_URL from "../config";
 
 const CustomNavbar = () => {
   const location = useLocation();

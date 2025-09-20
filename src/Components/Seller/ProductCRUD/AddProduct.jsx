@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container } from 'react-bootstrap';
+import BASE_URL from "../../../config";
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ const AddProduct = () => {
 
     const token = JSON.parse(localStorage.getItem('token'));
 
-    axios.post('http://localhost:8080/api/products/saveData', payload, {
+    axios.post(`${BASE_URL}/api/products/saveData`, payload, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from "../../config";
 
 export default function Payments() {
   const [payments, setPayments] = useState([]);
@@ -11,7 +12,7 @@ export default function Payments() {
   const fetchPayments = async () => {
     try {
       const token = JSON.parse(localStorage.getItem('token'));
-      const response = await axios.get('http://localhost:8080/api/payments/all', {
+      const response = await axios.get(`${BASE_URL}/api/payments/all`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

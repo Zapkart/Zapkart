@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
+import BASE_URL from "../../../config";
 
 export default function DeleteUser() {
   const [uid, setUid] = useState('');
@@ -19,7 +20,7 @@ export default function DeleteUser() {
     const token = JSON.parse(localStorage.getItem('token'));
 
     axios
-      .delete(`http://localhost:8080/api/users/${uid}`, {
+      .delete(`${BASE_URL}/api/users/${uid}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

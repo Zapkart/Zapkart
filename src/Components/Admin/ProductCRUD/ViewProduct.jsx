@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from "../../../config";
 
 export default function ViewProduct() {
   const [products, setProducts] = useState([]);
@@ -13,7 +14,7 @@ export default function ViewProduct() {
     try {
       const token = JSON.parse(localStorage.getItem('token'));
 
-      const response = await axios.get(`http://localhost:8080/api/products/${category}`, {
+      const response = await axios.get(`${BASE_URL}/api/products/${category}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -54,7 +55,7 @@ export default function ViewProduct() {
         {products.map((product) => (
           <div key={product.id} className="border rounded p-4 shadow flex flex-col items-center">
             <img 
-              src={`http://localhost:8080/images/${product.profileImage}`} 
+              src={`${BASE_URL}/images/${product.profileImage}`} 
               alt={product.name} 
               className="h-40 object-contain mb-4"
             />

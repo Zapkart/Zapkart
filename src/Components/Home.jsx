@@ -7,7 +7,7 @@ import { FiShoppingCart, FiUser, FiSearch, FiChevronRight } from 'react-icons/fi
 import { FaStar, FaRegHeart, FaHeart } from 'react-icons/fa';
 import Footer from './Footer';
 import zapkarthorizontallogo from '/assets/zapkarthorizontallogo.png'; // Adjust path as needed
-
+import BASE_URL from "../config";
 
 
 

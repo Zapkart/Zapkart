@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from "../../config";
 import { Container, Row, Col, Card, Modal, Spinner } from 'react-bootstrap';
 import CustomNavbar from '../CustomNavbar';
 import { toast, ToastContainer } from 'react-toastify';
@@ -20,7 +21,7 @@ const AcPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/products/ac', {
+        const response = await axios.get(`${BASE_URL}/api/products/ac`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setProducts(response.data);
@@ -58,7 +59,7 @@ const AcPage = () => {
     const quantity = 1;
 
     axios.post(
-      'http://localhost:8080/api/cart/add',
+      `${BASE_URL}/api/cart/add`,
       { customerId, productId, quantity },
       { headers: { Authorization: `Bearer ${token}` } }
     )
@@ -123,7 +124,7 @@ const AcPage = () => {
                   >
                     <Card.Img
                       variant="top"
-                      src={`http://localhost:8080/images/${product.profileImage}`}
+                      src={`${BASE_URL}/images/${product.profileImage}`}
                       className="w-100 h-100 object-contain"
                       onError={(e) => {
                         e.target.onerror = null;
@@ -184,7 +185,7 @@ const AcPage = () => {
               <div className="col-md-6">
                 <div style={{ height: '300px', overflow: 'hidden' }}>
                   <img
-                    src={`http://localhost:8080/images/${selected?.profileImage}`}
+                    src={`${BASE_URL}/images/${selected?.profileImage}`}
                     alt={selected?.name}
                     className="w-100 h-100 object-contain"
                     onError={(e) => {

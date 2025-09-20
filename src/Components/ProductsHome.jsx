@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import BASE_URL from "../config";
 // Enhanced CSS styles for consistent UI
 const imageContainerStyle = {
   width: '100%',
@@ -73,7 +73,7 @@ const ProductsHome = () => {
         ];
 
         const fetchPromises = categories.map(category =>
-          axios.get(`http://localhost:8080/api/products/${category.name}`, {
+          axios.get(`${BASE_URL}/api/products/${category.name}`, {
             headers: { Authorization: `Bearer ${token}` }
           })
             .then(res => category.setter(res.data))
@@ -184,7 +184,7 @@ const ProductsHome = () => {
           {/* Image Container */}
           <div className="relative group h-44 overflow-hidden">
             <img
-              src={`http://localhost:8080/images/${product.profileImage}`}
+              src={`${BASE_URL}/images/${product.profileImage}`}
               alt={product.title || `${product.brand} ${product.model}`}
               className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
               onError={(e) => {

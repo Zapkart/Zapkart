@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
+import BASE_URL from "../../../config";
 
 export default function AddUser() {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ export default function AddUser() {
     
 
     axios
-      .post('http://localhost:8080/api/users/register', payload, {
+      .post(`${BASE_URL}/api/users/register`, payload, {
         headers: {
           'Content-Type': 'multipart/form-data'       
         },

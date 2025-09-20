@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button, Form, Image } from 'react-bootstrap'
 import CustomNavbar from '../Components/CustomNavbar';
 import Footer from '../Components/Footer.jsx';
 import { useNavigate } from 'react-router-dom';
+import BASE_URL from "../config";
 
 function Cart() {
   const [cartData, setCartData] = useState([]);
@@ -26,7 +27,7 @@ function Cart() {
 
   useEffect(() => {
     if (!customerId) return;
-    axios.get('http://localhost:8080/api/cart/items', {
+    axios.get(`${BASE_URL}/api/cart/items`, {
       params: { customerId },
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -44,7 +45,7 @@ function Cart() {
     const updated = [...cartData];
     updated[index].quantity = newQty;
     setCartData(updated);
-    axios.put(`http://localhost:8080/api/cart/update?customerId=${customerId}&productId=${updated[index].product.productId}&quantity=${newQty}`, {}, {
+    axios.put(`${BASE_URL}/api/cart/update?customerId=${customerId}&productId=${updated[index].product.productId}&quantity=${newQty}`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     }).catch(err => {
       console.error('Update error:', err.response?.data || err.message);
@@ -54,7 +55,7 @@ function Cart() {
 
   const removeItem = index => {
     const item = cartData[index];
-    axios.delete(`http://localhost:8080/api/cart/delete?customerId=${customerId}&productId=${item.product.productId}`, {
+    axios.delete(`${BASE_URL}/api/cart/delete?customerId=${customerId}&productId=${item.product.productId}`, {
       headers: { Authorization: `Bearer ${token}` }
     }).then(() => {
       const updated = [...cartData];
@@ -64,7 +65,7 @@ function Cart() {
   };
 
   const removeAllItems = () => {
-    axios.delete(`http://localhost:8080/api/cart/clear?customerId=${customerId}`, {
+    axios.delete(`${BASE_URL}/api/cart/clear?customerId=${customerId}`, {
       headers: { Authorization: `Bearer ${token}` }
     }).then(() => setCartData([]))
       .catch(err => console.error('Clear error:', err.response?.data || err.message));
@@ -95,7 +96,7 @@ function Cart() {
                         const subtotal = product.price * quantity;
                         return (
                           <Row key={index} className="align-items-center p-3 border-bottom">
-                            <Col md={2}><Image src={`http://localhost:8080/images/${product.profileImage}`} alt={product.name} fluid rounded style={{ width: '100px', height: '100px', objectFit: 'cover' }} /></Col>
+                            <Col md={2}><Image src={`${BASE_URL}/images/${product.profileImage}`} alt={product.name} fluid rounded style={{ width: '100px', height: '100px', objectFit: 'cover' }} /></Col>
                             <Col md={4}>
                               <h5>{product.name}</h5>
                               <p className="text-muted small">Brand: {product.brand}</p>

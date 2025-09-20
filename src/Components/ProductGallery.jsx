@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Modal, Button } from 'react-bootstrap';
+import BASE_URL from "../config";
 
 const ProductGallery = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +11,7 @@ const ProductGallery = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
     
-    axios.get('http://localhost:8080/api/products', {
+    axios.get(`${BASE_URL}/api/products`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -34,7 +35,7 @@ const ProductGallery = () => {
             <Card onClick={() => handleShow(product)} style={{ cursor: 'pointer' }}>
               <Card.Img
                 variant="top"
-                src={`http://localhost:8080/images/${product.profileImage}`}
+                src={`${BASE_URL}/images/${product.profileImage}`}
                 height="200"
                 style={{ objectFit: 'cover' }}
               />
@@ -50,7 +51,7 @@ const ProductGallery = () => {
         </Modal.Header>
         <Modal.Body>
           <img
-            src={`http://localhost:8080/images/${selected?.profileImage}`}
+            src={`${BASE_URL}/images/${selected?.profileImage}`}
             alt={selected?.name}
             className="img-fluid mb-3"
           />

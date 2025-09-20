@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fa';
 import CustomNavbar from './CustomNavbar';
 import Footer from './Footer';
+import BASE_URL from "../config";
 
 const handleButtonClick = async (e) => {
   e.preventDefault();
@@ -22,7 +23,7 @@ const handleButtonClick = async (e) => {
 
   try {
     const response = await axios.put(
-      'http://localhost:8080/api/users/updateprofile',
+      `${BASE_URL}/api/users/updateprofile`,
       { name, email },
       {
         headers: {
@@ -58,7 +59,7 @@ const ApiService = {
     if (!token) throw new Error('No authentication token found');
 
     try {
-      const response = await axios.get(`http://localhost:8080/address/user/${userId}`, {
+      const response = await axios.get(`${BASE_URL}/address/user/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -77,7 +78,7 @@ const ApiService = {
 
     try {
       const response = await axios.post(
-        `http://localhost:8080/address/add/${addressData.userId}`,
+        `${BASE_URL}/address/add/${addressData.userId}`,
         addressData,
         {
           headers: {
@@ -98,7 +99,7 @@ const ApiService = {
     if (!token) throw new Error('No authentication token found');
 
     try {
-      await axios.delete(`http://localhost:8080/address/delete/${id}`, {
+      await axios.delete(`${BASE_URL}/address/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -123,7 +124,7 @@ const ApiService = {
       }
 
       const response = await axios.put(
-        `http://localhost:8080/api/users/${userData.id}`,
+        `${BASE_URL}/api/users/${userData.id}`,
         formDataToSend,
         {
           headers: {
@@ -150,7 +151,7 @@ const ApiService = {
 
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/users/reset-password',
+        `${BASE_URL}/api/users/reset-password`,
         passwordData,
         {
           headers: {
@@ -169,7 +170,7 @@ const ApiService = {
   resendVerification: async (email) => {
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/users/resend-otp',
+        `${BASE_URL}/api/users/resend-otp`,
         null,
         {
           params: { email },
@@ -189,7 +190,7 @@ const ApiService = {
   verifyOtp: async (email, otp) => {
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/users/verify-otp',
+        `${BASE_URL}/api/users/verify-otp`,
         null,
         {
           params: { email, otp },
@@ -302,7 +303,7 @@ export default function ManageProfile() {
         if (!token) throw new Error('No authentication token found');
 
         // Fetch user data from backend
-        const response = await axios.get('http://localhost:8080/api/users/me', {
+        const response = await axios.get(`${BASE_URL}/api/users/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -313,7 +314,7 @@ export default function ManageProfile() {
         setUserData(user);
         setAddressForm(prev => ({ ...prev, userId: user.id }));
         setPreviewImage(user.profileImage
-          ? `http://localhost:8080/images/${user.profileImage}`
+          ? `${BASE_URL}/images/${user.profileImage}`
           : null);
 
         // Fetch addresses

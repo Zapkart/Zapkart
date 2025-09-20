@@ -3,6 +3,7 @@ import axios from 'axios';
 import CustomNavbar from './CustomNavbar';
 import Footer from './Footer';
 import { Modal, Button, ProgressBar } from 'react-bootstrap';
+import BASE_URL from "../config";
 
 export default function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -27,7 +28,7 @@ export default function MyOrders() {
 
       const customerId = userData.id;
 
-      const response = await axios.get(`http://localhost:8080/api/orders/customer/${customerId}`, {
+      const response = await axios.get(`${BASE_URL}/api/orders/customer/${customerId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,7 +50,7 @@ export default function MyOrders() {
     try {
       const token = JSON.parse(localStorage.getItem('token'));
       const response = await axios.get(
-        `http://localhost:8080/invoice/download/razorpay/${razorpayOrderId}`,
+        `${BASE_URL}/invoice/download/razorpay/${razorpayOrderId}`,
         {
           responseType: 'blob',
           headers: {
@@ -72,7 +73,7 @@ export default function MyOrders() {
   };
 
 
-  const imageBaseUrl = "http://localhost:8080/images/";
+  const imageBaseUrl = `${BASE_URL}/images/`;
 
   const calculateDynamicStatus = (orderDate) => {
     const now = new Date();
@@ -169,7 +170,7 @@ export default function MyOrders() {
                 )}
                 <button
                   className="btn btn-info btn-sm"
-                  onClick={() => window.open(`http://localhost:8080/invoice/view/razorpay/${razorpayOrderId}`, '_blank')}
+                  onClick={() => window.open(`${BASE_URL}/invoice/view/razorpay/${razorpayOrderId}`, '_blank')}
                 >
                   View Invoice
                 </button>

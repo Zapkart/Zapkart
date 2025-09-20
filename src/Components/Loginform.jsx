@@ -10,6 +10,8 @@ import { FiMail, FiEye, FiEyeOff, FiLoader, FiLogIn, FiLock, FiUser } from 'reac
 import styled, { keyframes } from 'styled-components';
 import ReCAPTCHA from "react-google-recaptcha";
 
+import BASE_URL from "../config";
+
 
 const blobAnimation = keyframes`
   0% { transform: translate(0px, 0px) scale(1); }
@@ -116,7 +118,7 @@ export default function Loginform({ onLoginSuccess }) {
     }
 
     try {
-      const registerResponse = await axios.post('http://localhost:8080/api/users/register', payload, {
+      const registerResponse = await axios.post(`${BASE_URL}/api/users/register`, payload, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -139,7 +141,7 @@ export default function Loginform({ onLoginSuccess }) {
       const storedData = JSON.parse(localStorage.getItem('userData'));
       const email = storedData?.email || '';
 
-      await axios.post('http://localhost:8080/api/users/verify-otp', null, {
+      await axios.post(`${BASE_URL}/api/users/verify-otp`, null, {
         params: { email, otp },
       });
 
@@ -161,7 +163,7 @@ export default function Loginform({ onLoginSuccess }) {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8080/api/users/signin', loginData);
+      const response = await axios.post(`${BASE_URL}/api/users/signin`, loginData);
 
       localStorage.setItem('token', JSON.stringify(response.data));
       setResponseData(response.data);
@@ -177,7 +179,7 @@ export default function Loginform({ onLoginSuccess }) {
 
   const fetchUserDetails = (token) => {
     axios
-      .get('http://localhost:8080/api/users/me', {
+      .get(`${BASE_URL}/api/users/me`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
