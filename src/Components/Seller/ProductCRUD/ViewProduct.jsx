@@ -55,7 +55,7 @@ export default function ViewProduct() {
         {products.map((product) => (
           <div key={product.id} className="border rounded p-4 shadow flex flex-col items-center">
             <img 
-              src={`${BASE_URL}/images/${product.profileImage}`} 
+              src={`${BASE_URL}/images/${product.profile_Image}`} 
               alt={product.name} 
               className="h-40 object-contain mb-4"
             />
